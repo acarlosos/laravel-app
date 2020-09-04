@@ -179,6 +179,8 @@ Output
 No arquivo docker-compose, você tem três serviços: app, webserver e db.  Certifique-se de substituir a senha root para o MYSQL_ROOT_PASSWORD, definida como uma variável de ambiente sob o serviço db, por uma senha forte da sua escolha:
 
 ```
+~/laravel-app/docker-compose.yml
+
 version: '3'
 services:
 
