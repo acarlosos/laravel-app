@@ -4,7 +4,7 @@
 Primeiramente, verifique se você está no seu diretório home e faça uma cópia da versão mais recente do Projeto para um diretório chamado laravel-app:
 
     $ cd ~
-    $ git clone https://github.com/laravel/laravel.git laravel-app
+    $ git clone https://github.com/acarlosos/laravel-app laravel-app
 
 Vá até o diretório laravel-app:
 
