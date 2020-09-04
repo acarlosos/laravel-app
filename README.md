@@ -48,6 +48,7 @@ Com todos os seus serviços definidos no seu arquivo docker-compose, você preci
     $ docker-compose up -d
 
 Assim que o processo for concluído, utilize o comando a seguir para listar todos os contêineres em execução:
+
     $ docker ps
 
 Você verá o seguinte resultado com detalhes sobre seus contêineres do app, webserver e db:
