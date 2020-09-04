@@ -271,7 +271,7 @@ db:
     volumes:
       - dbdata:/var/lib/mysql
     networks:
-      - app-network
+      - app-backend
   ...
 
 ```
