@@ -5,6 +5,38 @@ Primeiramente, verifique se você está no seu diretório home e faça uma cópi
     $ cd ~
     $ git clone https://github.com/laravel/laravel.git laravel-app
 
+Vá até o diretório laravel-app:
+
+    $ cd ~/laravel-app
+
+Em seguida, utilize a imagem do composer para montar os diretórios que você precisará para seu projeto:
+
+    $ docker run --rm -v $(pwd):/app composer install
+
+## Passo 2 - Modificando as configurações do ambiente e executando os contêineres
+
+Como passo final, porém, vamos fazer uma cópia do arquivo .env.example que o Laravel inclui por padrão e nomear a copia .env, que é o arquivo que o Laravel espera para definir seu ambiente:
+    $ cp .env.example .env
+
+Você pode agora modificar o arquivo .env no contêiner app para incluir detalhes específicos sobre sua configuração.
+
+    $ nano .env
+
+Encontre o bloco que especifica o DB_CONNECTION e atualize-o para refletir as especificidades da sua configuração. Você modificará os seguintes campos:
+
+O DB_HOST será seu contêiner de banco de dados db.
+O DB_DATABASE será o banco de dados laravel.
+O DB_USERNAME será o nome de usuário que você usará para o seu banco de dados. Neste caso, vamos usar laraveluser.
+O DB_PASSWORD será a senha segura que você gostaria de usar para esta conta de usuário, vamos usar secret.
+
+/var/www/.env
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=laraveluser
+DB_PASSWORD=secret
+
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
 - Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
