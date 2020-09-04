@@ -32,7 +32,7 @@ Encontre o bloco que especifica o DB_CONNECTION e atualize-o para refletir as es
 
 O DB_HOST será seu contêiner de banco de dados db.
 O DB_DATABASE será o banco de dados laravel.
-O DB_USERNAME será o nome de usuário que você usará para o seu banco de dados. Neste caso, vamos usar desafiouser.
+O DB_USERNAME será o nome de usuário que você usará para o seu banco de dados. Neste caso, vamos usar laraveluser.
 O DB_PASSWORD será a senha segura que você gostaria de usar para esta conta de usuário, vamos usar secret.
 
 ```/var/www/.env```
@@ -41,7 +41,7 @@ DB_CONNECTION=mysql
 DB_HOST=db
 DB_PORT=3306
 DB_DATABASE=laravel
-DB_USERNAME=desafiouser
+DB_USERNAME=laraveluser
 DB_PASSWORD=secret
 ```
 
@@ -114,7 +114,7 @@ Output
 
 Em seguida, crie a conta de usuário que terá permissão para acessar esse banco de dados.
 
-    mysql> GRANT ALL ON laravel.* TO 'desafiouser'@'%' IDENTIFIED BY 'secret';
+    mysql> GRANT ALL ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY 'secret';
 
 Reinicie os privilégios para notificar o servidor MySQL das alterações:
 
