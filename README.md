@@ -17,6 +17,7 @@ Em seguida, utilize a imagem do composer para montar os diretórios que você pr
 ## Passo 2 - Modificando as configurações do ambiente e executando os contêineres
 
 Como passo final, porém, vamos fazer uma cópia do arquivo .env.example que o Laravel inclui por padrão e nomear a copia .env, que é o arquivo que o Laravel espera para definir seu ambiente:
+
     $ cp .env.example .env
 
 Você pode agora modificar o arquivo .env no contêiner app para incluir detalhes específicos sobre sua configuração.
