@@ -73,7 +73,7 @@ Suas definições da configuração serão carregadas em /var/www/bootstrap/cach
 Como passo final, visite http://localhost no navegador. 
 Você verá a seguinte página inicial para seu aplicativo Laravel:
 
-<img src="https://assets.digitalocean.com/articles/laravel_docker/laravel_home.png">
+<img src="https://assets.digitalocean.com/articles/laravel_docker/laravel_home.png" style="border: solid 1px #ccc">
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
