@@ -1,3 +1,4 @@
+## Como configurar Laravel, Nginx, e MySQL com Docker Compose
 ## Passo 1 — Fazendo download do Projeto e instalando dependências
 
 Primeiramente, verifique se você está no seu diretório home e faça uma cópia da versão mais recente do Projeto para um diretório chamado laravel-app:
