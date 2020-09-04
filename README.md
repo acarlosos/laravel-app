@@ -174,4 +174,102 @@ Output
    }
 ```
 
+## O arquivo do Docker Compose
 
+No arquivo docker-compose, você tem três serviços: app, webserver e db.  Certifique-se de substituir a senha root para o MYSQL_ROOT_PASSWORD, definida como uma variável de ambiente sob o serviço db, por uma senha forte da sua escolha:
+
+```
+version: '3'
+services:
+
+  #PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: digitalocean.com/php
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-backend
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-backend
+
+  #MySQL Service
+  db:
+    image: mysql:5.7.22
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-backend
+
+#Docker Networks
+networks:
+  app-backend:
+    driver: bridge
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local
+
+```
+Os serviços aqui definidos incluem:
+
+- app: esta definição de serviço contém o aplicativo Laravel e executa uma imagem personalizada do Docker, digitalocean.com/php, que você definirá no Passo 4. Ela também define o working_dir no contêiner para /var/www.
+- webserver: esta definição de serviço extrai a imagem nginx:alpine do Docker e expõe as portas 80 e 443.
+- db: esta definição de serviço extrai a imagem mysql:5.7.22 do Docker e define algumas variáveis de ambiente, incluindo um banco de dados chamado laravel para o seu aplicativo e a senha da** root** do banco de dados. Você pode dar o nome que quiser ao banco de dados e deve substituir o your_mysql_root_password pela senha forte escolhida. Esta definição de serviço também mapeia a porta 3306 no host para a porta 3306 no contêiner.
+
+Cada propriedade container_name define um nome para o contêiner, que corresponde ao nome do serviço.
+
+Para facilitar a comunicação entre contêineres, os serviços estão conectados a uma rede bridge chamada app-backend. Uma rede bridge utiliza um software bridge que permite que os contêineres conectados à mesma rede bridge se comuniquem uns com os outros. O driver da bridge instala automaticamente regras na máquina do host para que contêineres em redes bridge diferentes não possam se comunicar diretamente entre eles. Isso cria um nível de segurança mais elevado para os aplicativos, garantindo que apenas serviços relacionados possam se comunicar uns com os outros. Isso também significa que você pode definir várias redes e serviços que se conectam a funções relacionadas: os serviços de aplicativo front-end podem usar uma rede frontend, por exemplo, e os serviços back-end podem usar uma rede backend.
+
+## Persistindo os dados
+
+O Docker tem recursos poderosos e convenientes para persistir os dados. No nosso aplicativo, vamos usar volumes e bind mounts para persistir o banco de dados, o aplicativo e os arquivos de configuração. Os volumes oferecem flexibilidade para backups e persistência além do ciclo de vida de um contêiner, enquanto os bind mounts facilitam alterações no código durante o desenvolvimento, fazendo alterações nos arquivos do host ou diretórios imediatamente disponíveis nos seus contêineres. Nossa configuração usa ambos.
+
+```
+~/laravel-app/docker-compose.yml
+...
+#MySQL Service
+db:
+  ...
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - app-network
+  ...
+
+```
