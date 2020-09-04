@@ -29,13 +29,15 @@ O DB_DATABASE será o banco de dados laravel.
 O DB_USERNAME será o nome de usuário que você usará para o seu banco de dados. Neste caso, vamos usar laraveluser.
 O DB_PASSWORD será a senha segura que você gostaria de usar para esta conta de usuário, vamos usar secret.
 
-/var/www/.env
+```/var/www/.env
+
 DB_CONNECTION=mysql
 DB_HOST=db
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=laraveluser
 DB_PASSWORD=secret
+```
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
