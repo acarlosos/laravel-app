@@ -158,20 +158,26 @@ Você verá um resultado que se parece com este:
 
 ```
 Output
-=> Illuminate\Support\Collection {#2856
+=> Illuminate\Support\Collection {#3147
      all: [
-       {#2862
+       {#3145
          +"id": 1,
          +"migration": "2014_10_12_000000_create_users_table",
          +"batch": 1,
        },
-       {#2865
+       {#3154
          +"id": 2,
          +"migration": "2014_10_12_100000_create_password_resets_table",
          +"batch": 1,
        },
+       {#3155
+         +"id": 3,
+         +"migration": "2019_08_19_000000_create_failed_jobs_table",
+         +"batch": 1,
+       },
      ],
    }
+>>> 
 ```
 
 ## O arquivo do Docker Compose
