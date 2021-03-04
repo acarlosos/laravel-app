@@ -12,7 +12,7 @@ Vá até o diretório laravel-app:
 
 Em seguida, utilize a imagem do composer para montar os diretórios que você precisará para seu projeto:
 
-    $ docker run --rm -it --volume $(pwd):/app prooph/composer:7.2 install
+    $ docker run --rm -it --volume $(pwd):/app prooph/composer:7.3 install
 
 Como passo final, defina as permissões no diretório do projeto para que ele seja propriedade do seu usuário não root:
 
